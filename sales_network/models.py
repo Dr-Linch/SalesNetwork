@@ -12,12 +12,12 @@ class Product(models.Model):
 class Provider(models.Model):
 
     LEVELS = (
-        ('FAC', 'factory'),
-        ('STO', 'store'),
-        ('IND', 'individual entepreneur')
+        ('1', 'Завод'),
+        ('2', 'Розничная сеть'),
+        ('3', 'Индивидуальный предприниматель')
     )
 
-    level = models.CharField(max_length=3, choices=LEVELS)
+    level = models.CharField(default=1, max_length=1, choices=LEVELS)
     name = models.CharField(max_length=100, verbose_name='Provide Name')
     email = models.EmailField(verbose_name='Provide Email')
     country = models.CharField(max_length=100, verbose_name='Provider Country')
@@ -26,7 +26,7 @@ class Provider(models.Model):
     house_number = models.IntegerField(verbose_name='Provider House Number')
     products = models.ManyToManyField(Product, **NULLABLE)
     self_provider = models.ForeignKey('self', on_delete=models.SET_NULL, **NULLABLE)
-    provider_debt = models.BigIntegerField(verbose_name='', default=0)
+    provider_debt = models.BigIntegerField(verbose_name='Задолженность', default=0)
     created_at = models.DateTimeField(default=datetime.now(), verbose_name='Creation time')
 
     def __str__(self):

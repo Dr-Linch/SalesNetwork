@@ -7,3 +7,10 @@ class ProviderSerializer(ModelSerializer):
     class Meta:
         model = Provider
         exclude = ('provider_debt',)
+
+
+class ProviderGetSerializer(ModelSerializer):
+
+    class Meta:
+        model = Provider
+        fields = '__all__'

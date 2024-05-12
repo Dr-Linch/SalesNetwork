@@ -24,9 +24,9 @@ class Provider(models.Model):
     citi = models.CharField(max_length=100, verbose_name='Provider Citi')
     street = models.CharField(max_length=100, verbose_name='Provider Street')
     house_number = models.IntegerField(verbose_name='Provider House Number')
-    products = models.ManyToManyField(Product)
+    products = models.ManyToManyField(Product, **NULLABLE)
     self_provider = models.ForeignKey('self', on_delete=models.SET_NULL, **NULLABLE)
-    provider_debt = models.BigIntegerField(verbose_name='', **NULLABLE)
+    provider_debt = models.BigIntegerField(verbose_name='', default=0)
     created_at = models.DateTimeField(default=datetime.now(), verbose_name='Creation time')
 
     def __str__(self):
